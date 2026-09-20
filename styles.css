@@ -5,6 +5,13 @@
  *
  * No build step, no framework - the same shape ago-landing's own styles.css states the reasoning
  * for: there is nothing here that needs one.
+ *
+ * `25-184`: dark-first three-state cascade, the same shape `ago-landing/styles.css` and
+ * `ago-console/src/design/tokens.css` both use - bare `:root` is the dark palette (already was, and
+ * stays the source of truth), `:root[data-theme="light"]` is the manual override, and the
+ * `prefers-color-scheme` block now guards itself with `:not([data-theme="dark"])` so an explicit
+ * dark choice can win over a light OS setting too, not just the reverse. Same light values as
+ * before, just no longer the only way to reach them - see `theme.js` for what writes the attribute.
  */
 :root{
   --bg:#0c101c;
@@ -18,8 +25,18 @@
   --r:14px;
   --r-lg:22px;
 }
+:root[data-theme="light"]{
+  --bg:#f4f6fb;
+  --panel:#ffffff;
+  --panel-2:#f2f5fc;
+  --line:#dbe3f2;
+  --ink:#0f1728;
+  --ink-soft:#4c5878;
+  --ink-faint:#7c88a6;
+  --page-accent:#2f6ce0;
+}
 @media (prefers-color-scheme: light){
-  :root{
+  :root:not([data-theme="dark"]){
     --bg:#f4f6fb;
     --panel:#ffffff;
     --panel-2:#f2f5fc;
@@ -56,10 +73,24 @@ header.top .src{margin-top:10px;font-family:'JetBrains Mono',monospace;font-size
    copy-pasted by hand into every page's own <header> to keep it consistent, the shape a static site
    with no templating has to accept (see the item's own "no build step" note). */
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--line);}
+/* 25-184: the page nav and the theme toggle sit together at the trailing end of the topbar, the
+   same "everything after the brand drifts right" grouping ago-landing's own .nav-row uses - kept as
+   one wrapper here instead of ago-landing's margin-left:auto so .topbar's existing two-child
+   space-between behaviour (wordmark vs. "the rest") doesn't have to change shape for a third item. */
+.topbar-end{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
 .pagenav{display:flex;gap:2px;flex-wrap:wrap;font-family:'Manrope',sans-serif;}
 .pagenav a{padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:700;color:var(--ink-soft);text-decoration:none;transition:.15s;}
 .pagenav a:hover{color:var(--ink);background:var(--panel-2);}
 .pagenav a[aria-current="page"]{color:var(--ink);background:var(--panel-2);box-shadow:inset 0 0 0 1px var(--line);}
+
+/* Theme toggle - 25-184. Same idea as ago-landing's own .theme-toggle (a small square icon button
+   beside the nav), redrawn in this page's own chrome rather than importing its CSS class wholesale:
+   this page has no Material Symbols font loaded, so the icon is a plain character (this repository's
+   own idiom already - see the ✕/✓/i alert glyphs on components.html) instead of an icon-font glyph. */
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 auto;
+  border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink-soft);cursor:pointer;
+  font-size:15px;line-height:1;transition:border-color .15s,color .15s,background .15s;}
+.theme-toggle:hover{border-color:var(--page-accent);color:var(--ink);background:var(--panel-2);}
 
 section{padding:52px 0;border-bottom:1px solid var(--line);}
 section:last-of-type{border-bottom:none;}

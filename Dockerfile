@@ -47,6 +47,9 @@ COPY styles.css /usr/share/nginx/html/styles.css
 # deliberately its own file, not folded into styles.css, which stays this page's own chrome.
 COPY components.css /usr/share/nginx/html/components.css
 COPY tokens.js /usr/share/nginx/html/tokens.js
+# `25-184`: the manual theme toggle - the first real JS behaviour in this repository (tokens.js
+# above is plain data, no DOM/localStorage logic).
+COPY theme.js /usr/share/nginx/html/theme.js
 # The five real channel icons (25-172), named one by one rather than `COPY icons/` - explicit is what
 # keeps this list honest as the exact set of files this page ships, matching ago-landing's own
 # "never `COPY .`" rule for the identical reason.

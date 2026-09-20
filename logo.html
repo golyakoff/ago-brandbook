@@ -14,13 +14,18 @@
 <header class="top">
   <div class="wrap topbar">
     <a class="wordmark" href="index.html"><span class="g">A</span>AGO Brandbook</a>
-    <nav class="pagenav" aria-label="Brandbook sections">
-      <a href="index.html">Color</a>
-      <a href="typography.html">Type</a>
-      <a href="icons.html">Icons</a>
-      <a href="components.html">Components</a>
-      <a href="logo.html" aria-current="page">Logo</a>
-    </nav>
+    <div class="topbar-end">
+      <nav class="pagenav" aria-label="Brandbook sections">
+        <a href="index.html">Color</a>
+        <a href="typography.html">Type</a>
+        <a href="icons.html">Icons</a>
+        <a href="components.html">Components</a>
+        <a href="logo.html" aria-current="page">Logo</a>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <span id="themeIcon" aria-hidden="true">☾</span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -55,5 +60,7 @@
     <span>© 2026 AGO Platform</span>
   </div>
 </footer>
+
+<script src="theme.js"></script>
 </body>
 </html>
