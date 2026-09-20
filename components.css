@@ -208,6 +208,18 @@
 .console-demo .ago-control:focus-visible { border-color: var(--ago-brand); box-shadow: var(--ago-focus-halo); }
 .console-demo .ago-control:disabled { background: var(--ago-surface-sunken); color: var(--ago-ink-soft); cursor: not-allowed; }
 .console-demo .ago-control[aria-invalid="true"] { border-color: var(--ago-danger); }
+
+/* 25-185: date/time's calendar/clock glyph, copied verbatim from `ago-console/src/components/
+   components.css` (see that file's own comment for what was actually confirmed live and why
+   `color-scheme` - not a `filter` - is the fix). Scoped through `.console-demo` the same way this
+   file's own dark-token block already scopes `tokens.css`'s cascade to this page's demo section
+   instead of `:root`. */
+.console-demo .ago-control { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .console-demo .ago-control { color-scheme: dark; }
+}
+:root[data-theme="dark"] .console-demo .ago-control { color-scheme: dark; }
+
 .console-demo .ago-control--textarea { min-height: 5rem; resize: vertical; }
 .console-demo .ago-control--select {
   appearance: none;
