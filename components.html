@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AGO Brandbook — the real ago-console component set, in its real states.">
+<title>AGO Brandbook — Components</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="components.css">
+</head>
+<body>
+<!-- 25-183: every `.ago-*` class below is real - copied from ago-console/src/components/
+     components.css, not approximated - styled with this page's own components.css, which copies
+     that file's rules and the token values they read from tokens.css. No React, no build step: this
+     page demonstrates the identity by matching the real CSS, the same way index.html's color
+     section shows real hex values without importing tokens.css as a stylesheet. A handful of
+     `.is-hover` helper classes (labelled where used) make a hover state visible without a mouse;
+     every real `:hover` also still works live if you point a cursor at it. Dialogs use the real
+     `<dialog open>` attribute so they render already open, no click or JavaScript needed. -->
+<header class="top">
+  <div class="wrap topbar">
+    <a class="wordmark" href="index.html"><span class="g">A</span>AGO Brandbook</a>
+    <nav class="pagenav" aria-label="Brandbook sections">
+      <a href="index.html">Color</a>
+      <a href="typography.html">Type</a>
+      <a href="icons.html">Icons</a>
+      <a href="components.html" aria-current="page">Components</a>
+      <a href="logo.html">Logo</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <p class="lede">The twelve real components AGO Console ships
+      (<code>ago-console/src/components/</code>), each shown in its real states, styled from the
+      real <code>components.css</code> — not redrawn or approximated. This is a static reference,
+      not a playground: nothing here is editable, and a dialog that would normally need a click to
+      open is shown already open.</p>
+    <ul class="jump-nav">
+      <li><a href="#button">Button</a></li>
+      <li><a href="#badge">Badge</a></li>
+      <li><a href="#alert">Alert</a></li>
+      <li><a href="#dialog">Dialog</a></li>
+      <li><a href="#field">Field / Input</a></li>
+      <li><a href="#select">Select</a></li>
+      <li><a href="#textarea">Textarea</a></li>
+      <li><a href="#panel">Panel</a></li>
+      <li><a href="#table">Table</a></li>
+      <li><a href="#spinner">Spinner</a></li>
+      <li><a href="#tooltip">Tooltip</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- BUTTON -->
+  <section id="button">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-btn</span>
+        <h2>Button</h2>
+        <p class="lede">Four tones (<code>--primary/--secondary/--ghost/--danger</code>), two sizes
+          (<code>--md/--sm</code>), a real hover per tone and a real disabled state.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-stage demo-col">
+          <div class="demo-row">
+            <div class="demo-item"><span class="demo-cap">primary · md</span><button class="ago-btn ago-btn--primary ago-btn--md">Save changes</button></div>
+            <div class="demo-item"><span class="demo-cap">primary · hover</span><button class="ago-btn ago-btn--primary ago-btn--md is-hover">Save changes</button></div>
+            <div class="demo-item"><span class="demo-cap">primary · disabled</span><button class="ago-btn ago-btn--primary ago-btn--md" disabled>Save changes</button></div>
+            <div class="demo-item"><span class="demo-cap">primary · sm</span><button class="ago-btn ago-btn--primary ago-btn--sm">Save changes</button></div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-item"><span class="demo-cap">secondary · md</span><button class="ago-btn ago-btn--secondary ago-btn--md">Export CSV</button></div>
+            <div class="demo-item"><span class="demo-cap">secondary · hover</span><button class="ago-btn ago-btn--secondary ago-btn--md is-hover">Export CSV</button></div>
+            <div class="demo-item"><span class="demo-cap">secondary · disabled</span><button class="ago-btn ago-btn--secondary ago-btn--md" disabled>Export CSV</button></div>
+            <div class="demo-item"><span class="demo-cap">secondary · sm</span><button class="ago-btn ago-btn--secondary ago-btn--sm">Export CSV</button></div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-item"><span class="demo-cap">ghost · md</span><button class="ago-btn ago-btn--ghost ago-btn--md">Skip for now</button></div>
+            <div class="demo-item"><span class="demo-cap">ghost · hover</span><button class="ago-btn ago-btn--ghost ago-btn--md is-hover">Skip for now</button></div>
+            <div class="demo-item"><span class="demo-cap">ghost · disabled</span><button class="ago-btn ago-btn--ghost ago-btn--md" disabled>Skip for now</button></div>
+            <div class="demo-item"><span class="demo-cap">ghost · sm</span><button class="ago-btn ago-btn--ghost ago-btn--sm">Skip for now</button></div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-item"><span class="demo-cap">danger · md</span><button class="ago-btn ago-btn--danger ago-btn--md">Delete conversation</button></div>
+            <div class="demo-item"><span class="demo-cap">danger · hover</span><button class="ago-btn ago-btn--danger ago-btn--md is-hover">Delete conversation</button></div>
+            <div class="demo-item"><span class="demo-cap">danger · disabled</span><button class="ago-btn ago-btn--danger ago-btn--md" disabled>Delete conversation</button></div>
+            <div class="demo-item"><span class="demo-cap">danger · sm</span><button class="ago-btn ago-btn--danger ago-btn--sm">Delete conversation</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BADGE -->
+  <section id="badge">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-badge</span>
+        <h2>Badge</h2>
+        <p class="lede">Six tones, plus <code>.ago-badge__dot</code> (currentcolor, with a measured
+          glow on the success tone only) and the mono variant used for identifiers.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-stage">
+          <div class="demo-row">
+            <div class="demo-item"><span class="demo-cap">neutral</span><span class="ago-badge ago-badge--neutral">Draft</span></div>
+            <div class="demo-item"><span class="demo-cap">brand</span><span class="ago-badge ago-badge--brand">Booking</span></div>
+            <div class="demo-item"><span class="demo-cap">accent + ai marker</span><span class="ago-badge ago-badge--accent">Refund <span class="ago-badge__ai-marker">AI</span></span></div>
+            <div class="demo-item"><span class="demo-cap">success + dot</span><span class="ago-badge ago-badge--success"><span class="ago-badge__dot"></span>Live</span></div>
+            <div class="demo-item"><span class="demo-cap">danger</span><span class="ago-badge ago-badge--danger">Escalated</span></div>
+            <div class="demo-item"><span class="demo-cap">mono</span><span class="ago-badge ago-badge--neutral ago-badge--mono">#7f3a1c</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALERT -->
+  <section id="alert">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-alert</span>
+        <h2>Alert</h2>
+        <p class="lede">Three tones, each with a glyph, a title and body text —
+          <code>.ago-alert__title</code>/<code>__body</code>/<code>__glyph</code>. The icon is
+          decorative in the real component (<code>aria-hidden</code>); the tone and the text carry
+          the meaning.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-stage demo-col">
+          <div class="ago-alert ago-alert--danger">
+            <span class="ago-alert__glyph" aria-hidden="true">✕</span>
+            <div class="ago-alert__body">
+              <span class="ago-alert__title">Message failed to send</span>
+              <span>WhatsApp rejected the message — the visitor's 24-hour session window has closed.</span>
+            </div>
+          </div>
+          <div class="ago-alert ago-alert--success">
+            <span class="ago-alert__glyph" aria-hidden="true">✓</span>
+            <div class="ago-alert__body">
+              <span class="ago-alert__title">Backup completed</span>
+              <span>Encrypted and pulled to the operator's machine — 214 MB, 2026-09-20 03:00 UTC.</span>
+            </div>
+          </div>
+          <div class="ago-alert ago-alert--info">
+            <span class="ago-alert__glyph" aria-hidden="true">i</span>
+            <div class="ago-alert__body">
+              <span class="ago-alert__title">A new channel is available</span>
+              <span>MAX is live for this account — link it from Settings → Channels.</span>
+              <span class="ago-alert__action"><a href="#">Open settings →</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIALOG -->
+  <section id="dialog">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-dialog</span>
+        <h2>Dialog</h2>
+        <p class="lede">Rendered as a real <code>&lt;dialog open&gt;</code> element so it shows open
+          without JavaScript — <code>ago-console</code> opens the same element with
+          <code>showModal()</code>, which additionally paints the real <code>::backdrop</code>; this
+          page fakes that dimming with its own <code>.dialog-stage</code> wrapper so the open state
+          is visible without a click. The drawer variant (<code>--drawer</code>) is shown the same
+          way, constrained to its own stage instead of the real viewport edge.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <span class="demo-cap">base dialog, open</span>
+        <div class="demo-stage dialog-stage" style="margin-top:8px;margin-bottom:28px;">
+          <dialog open class="ago-dialog">
+            <div class="ago-dialog__inner">
+              <h3 class="ago-dialog__title">Delete this conversation?</h3>
+              <p style="margin:0;font-size:var(--ago-text-base);color:var(--ago-ink-soft);">This can't
+                be undone — the conversation and its messages are removed for every operator.</p>
+              <div class="ago-dialog__footer">
+                <button class="ago-btn ago-btn--secondary ago-btn--md">Cancel</button>
+                <button class="ago-btn ago-btn--danger ago-btn--md">Delete</button>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <span class="demo-cap">drawer variant, open</span>
+        <div class="demo-stage dialog-stage dialog-stage--drawer" style="margin-top:8px;min-height:340px;">
+          <dialog open class="ago-dialog ago-dialog--drawer">
+            <div class="ago-dialog__inner">
+              <h3 class="ago-dialog__title">Keyboard shortcuts</h3>
+              <p style="margin:0;font-size:var(--ago-text-sm);color:var(--ago-ink-soft);">⌘K — command
+                palette · G then I — inbox · G then Q — queue</p>
+              <div class="ago-dialog__footer"><button class="ago-btn ago-btn--secondary ago-btn--md">Close</button></div>
+            </div>
+          </dialog>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIELD / INPUT -->
+  <section id="field">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-field · .ago-control</span>
+        <h2>Field &amp; Input</h2>
+        <p class="lede">A label, an optional description, an optional error — the field never uses
+          colour alone for "this is wrong": the invalid border is always paired with
+          <code>.ago-field__error</code> text.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-stage">
+          <div class="demo-row" style="align-items:flex-start;">
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">default, with description</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-email">Contact email</label>
+                <div class="ago-field__control-row">
+                  <input id="f-email" class="ago-control" type="email" placeholder="name@business.ru">
+                </div>
+                <span class="ago-field__description">Used for the weekly summary only.</span>
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">invalid, with error</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-email-2">Contact email</label>
+                <input id="f-email-2" class="ago-control" type="email" aria-invalid="true" value="not-an-email">
+                <span class="ago-field__error">Enter a valid email address.</span>
+              </div>
+            </div>
+            <div class="demo-item">
+              <span class="demo-cap">hover (also live)</span>
+              <input class="ago-control is-hover" type="text" value="Point a cursor at any control too" style="width:230px;">
+            </div>
+            <div class="demo-item">
+              <span class="demo-cap">disabled</span>
+              <input class="ago-control" type="text" value="Locked while syncing" disabled style="width:230px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECT -->
+  <section id="select">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-control--select</span>
+        <h2>Select</h2>
+        <p class="lede">Native <code>&lt;select&gt;</code>, restyled with the same control shell as
+          Input and Textarea so a 40px control is a 40px control regardless of which one it is.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-stage">
+          <div class="demo-row">
+            <div class="demo-item">
+              <span class="demo-cap">default</span>
+              <select class="ago-control ago-control--select" style="width:220px;">
+                <option>Telegram</option><option>WhatsApp</option><option>VK</option><option>MAX</option>
+              </select>
+            </div>
+            <div class="demo-item">
+              <span class="demo-cap">disabled</span>
+              <select class="ago-control ago-control--select" style="width:220px;" disabled>
+                <option>Telegram</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEXTAREA -->
+  <section id="textarea">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-control--textarea</span>
+        <h2>Textarea</h2>
+        <p class="lede">Same control shell as Input, taller and vertically resizable.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-stage">
+          <div class="demo-row" style="align-items:flex-start;">
+            <div class="demo-item" style="flex:1 1 280px;">
+              <span class="demo-cap">default</span>
+              <textarea class="ago-control ago-control--textarea" style="width:100%;" placeholder="Internal note for the next shift..."></textarea>
+            </div>
+            <div class="demo-item" style="flex:1 1 280px;">
+              <span class="demo-cap">disabled</span>
+              <textarea class="ago-control ago-control--textarea" style="width:100%;" disabled>Locked while another operator edits this note.</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL -->
+  <section id="panel">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-panel</span>
+        <h2>Panel</h2>
+        <p class="lede">The default surface every screen is built from — a head (title,
+          description, actions) and a body. <code>--quiet</code> drops the shadow onto the raised
+          surface, for a panel that sits inside another panel.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-row" style="align-items:flex-start;">
+          <div class="ago-panel" style="flex:1 1 320px;">
+            <div class="ago-panel__head">
+              <div>
+                <div class="ago-panel__title">Conversation tags</div>
+                <p class="ago-panel__description">Applied automatically and by operators; AI-suggested tags are marked.</p>
+              </div>
+              <div class="ago-panel__actions"><button class="ago-btn ago-btn--secondary ago-btn--sm">Manage</button></div>
+            </div>
+            <div class="ago-panel__body">
+              <div class="demo-row">
+                <span class="ago-badge ago-badge--brand">Booking</span>
+                <span class="ago-badge ago-badge--accent">Refund <span class="ago-badge__ai-marker">AI</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="ago-panel ago-panel--quiet" style="flex:1 1 320px;">
+            <div class="ago-panel__head"><div class="ago-panel__title">Quiet panel</div></div>
+            <div class="ago-panel__body"><span class="ago-mono">no shadow, raised surface — a panel nested inside a panel</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <section id="table">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-table</span>
+        <h2>Table</h2>
+        <p class="lede">A sunken header row, a numeric column right-aligned with tabular figures
+          (<code>.ago-table__cell--end</code>), and a hover state on the body rows.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="ago-table-scroll">
+          <table class="ago-table">
+            <caption>Recent conversations</caption>
+            <thead>
+              <tr><th>Visitor</th><th>Channel</th><th>Status</th><th class="ago-table__cell--end">Messages</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Мария К.</td><td>Telegram</td>
+                <td><span class="ago-badge ago-badge--success"><span class="ago-badge__dot"></span>Live</span></td>
+                <td class="ago-table__cell--end">14</td>
+              </tr>
+              <tr style="background:var(--ago-surface-raised);">
+                <td>Игорь П. <span class="demo-cap">(row hover, simulated)</span></td><td>WhatsApp</td>
+                <td><span class="ago-badge ago-badge--neutral">Closed</span></td>
+                <td class="ago-table__cell--end">6</td>
+              </tr>
+              <tr>
+                <td>Анна В.</td><td>MAX</td>
+                <td><span class="ago-badge ago-badge--danger">Escalated</span></td>
+                <td class="ago-table__cell--end">21</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPINNER / SKELETON -->
+  <section id="spinner">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-spinner · .ago-skeleton</span>
+        <h2>Spinner &amp; Skeleton</h2>
+        <p class="lede">A spinner is always beside a real text label (<code>aria-live</code> carries
+          the state, not the animation). A skeleton stack stands in for content that has not
+          arrived yet.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-stage demo-col">
+          <div class="demo-row">
+            <div class="ago-spinner-row"><span class="ago-spinner" role="status" aria-label="Loading"></span>Loading conversation…</div>
+          </div>
+          <div class="demo-row">
+            <div class="ago-skeleton-stack" style="width:300px;">
+              <span class="ago-skeleton" style="width:70%;"></span>
+              <span class="ago-skeleton" style="width:100%;"></span>
+              <span class="ago-skeleton" style="width:45%;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLTIP -->
+  <section id="tooltip">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">.ago-tooltip</span>
+        <h2>Tooltip</h2>
+        <p class="lede">A 24px round trigger (the WCAG 2.5.8 target-size floor) beside a section
+          title — a sibling, never a descendant, so the title's accessible name never picks up the
+          trigger's own label. Normally revealed on hover/focus; shown open below so it's visible
+          without one.</p>
+      </div>
+      <div class="demo-block console-demo">
+        <div class="demo-stage">
+          <div class="ago-tooltip-row">
+            <h3 style="margin:0;font-size:var(--ago-text-lg);">Escalation SLA</h3>
+            <span class="ago-tooltip">
+              <button type="button" class="ago-tooltip__trigger is-hover" aria-label="What is the escalation SLA?">?</button>
+              <span class="ago-tooltip__bubble">Escalated conversations page an operator within 2 minutes during business hours.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>AGO Brandbook</span>
+    <a href="https://reserve-me.ru" target="_blank" rel="noopener">reserve-me.ru ↗</a>
+    <a href="https://github.com/golyakoff/ago-brandbook" target="_blank" rel="noopener">Source ↗</a>
+    <span>© 2026 AGO Platform</span>
+  </div>
+</footer>
+</body>
+</html>

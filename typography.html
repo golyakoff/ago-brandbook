@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AGO Brandbook — two real type systems, shown honestly, not reconciled.">
+<title>AGO Brandbook — Type</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Every family/weight loaded below is the union of the two real font-loading <link> lines this
+     page documents — ago-console/index.html's own line (Unbounded 700, Manrope 400/600/700/800,
+     JetBrains Mono 500/600) and ago-landing/index.html's own current line (Onest 500/600/700/800,
+     IBM Plex Sans 400/500/600/700, IBM Plex Mono 400/500/600) — so every specimen below renders at
+     a weight each site actually ships, not one picked for convenience. -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;600&family=Onest:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap topbar">
+    <a class="wordmark" href="index.html"><span class="g">A</span>AGO Brandbook</a>
+    <nav class="pagenav" aria-label="Brandbook sections">
+      <a href="index.html">Color</a>
+      <a href="typography.html" aria-current="page">Type</a>
+      <a href="icons.html">Icons</a>
+      <a href="components.html">Components</a>
+      <a href="logo.html">Logo</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <p class="lede">Two real type systems, not one — the same "both real, shown honestly, not
+      reconciled" treatment the <a href="index.html">color page</a> already gives the palette
+      discrepancy. This page is the type half of that same finding, checked for the first time here.</p>
+  </div>
+</header>
+
+<main>
+  <!-- THE DISCREPANCY -->
+  <section id="discrepancy">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Found 2026-09-20</span>
+        <h2>A stale claim, caught by reading both files</h2>
+        <p class="lede"><code>ago-console/src/design/tokens.css</code>'s own header comment says
+          every value in it, type included, is "traceable to <code>ago-landing/index.html</code>" —
+          true on the day it was written. <code>ago-console/index.html</code>'s own font-loading
+          <code>&lt;link&gt;</code> still pulls the three families that trace was made from:
+          <strong>Unbounded / Manrope / JetBrains Mono</strong>. But <code>ago-landing/index.html</code>'s
+          own current font-loading <code>&lt;link&gt;</code> pulls a different three:
+          <strong>Onest / IBM Plex Sans / IBM Plex Mono</strong>. The landing page was redesigned
+          after the console's tokens were traced from it, and nothing updated the claim.</p>
+      </div>
+      <div class="callout">Read directly from each repository's own <code>index.html</code>, not
+        assumed: <code>ago-console/index.html</code> loads
+        <code>family=Unbounded:wght@700&amp;family=Manrope:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;600</code>.
+        <code>ago-landing/index.html</code> loads
+        <code>family=Onest:wght@500;600;700;800&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600</code>.
+        Both quoted verbatim from each file's own <code>&lt;link href="https://fonts.googleapis.com/css2?...">"</code>.</div>
+    </div>
+  </section>
+
+  <!-- TWO SYSTEMS SIDE BY SIDE -->
+  <section id="systems">
+    <div class="wrap">
+      <div class="head">
+        <h2>Two systems, side by side</h2>
+        <p class="lede">Real specimens, rendered at the actual weights and sizes each site loads and
+          uses — not just the family name.</p>
+      </div>
+
+      <div class="type-systems">
+        <div class="system-block">
+          <span class="system-kicker">In use today</span>
+          <h3>ago-console's system</h3>
+          <p class="system-src">tokens.css: --ago-font-sans / --ago-font-display / --ago-font-mono</p>
+          <div class="families">
+            <div class="family-card">
+              <div class="fam-name">--ago-font-display · Unbounded 700</div>
+              <div class="fam-sample" style="font-family:'Unbounded',sans-serif;font-weight:700;">Unbounded</div>
+              <div class="fam-role">The wordmark only — one use per screen, by design.</div>
+            </div>
+            <div class="family-card">
+              <div class="fam-name">--ago-font-sans · Manrope 700</div>
+              <div class="fam-sample" style="font-family:'Manrope',sans-serif;font-weight:700;">Manrope</div>
+              <div class="fam-role">Interface text — every label, paragraph and control (400/600/700/800 loaded).</div>
+            </div>
+            <div class="family-card">
+              <div class="fam-name">--ago-font-mono · JetBrains Mono 600</div>
+              <div class="fam-sample" style="font-family:'JetBrains Mono',monospace;font-weight:600;">JetBrains Mono</div>
+              <div class="fam-role">Identifiers: ids, sequence numbers, hex colours (500/600 loaded).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-block">
+          <span class="system-kicker">In use today</span>
+          <h3>ago-landing's system</h3>
+          <p class="system-src">styles.css: h1/h2/h3+buttons / body / .kicker+.num</p>
+          <div class="families">
+            <div class="family-card">
+              <div class="fam-name">h1, h2, h3, .brand, .btn · Onest 800</div>
+              <div class="fam-sample" style="font-family:'Onest',sans-serif;font-weight:800;">Onest</div>
+              <div class="fam-role">Headings, wordmark, buttons, big numbers (500/600/700/800 loaded).</div>
+            </div>
+            <div class="family-card">
+              <div class="fam-name">body · IBM Plex Sans 400</div>
+              <div class="fam-sample" style="font-family:'IBM Plex Sans',sans-serif;font-weight:400;">IBM Plex Sans</div>
+              <div class="fam-role">Body copy — the page's own default font-family (400/500/600/700 loaded).</div>
+            </div>
+            <div class="family-card">
+              <div class="fam-name">.kicker, .num · IBM Plex Mono 500</div>
+              <div class="fam-sample" style="font-family:'IBM Plex Mono',monospace;font-weight:500;">IBM Plex Mono</div>
+              <div class="fam-role">Kickers, tabular numbers, prices (400/500/600 loaded).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE SCALES -->
+  <section id="scales">
+    <div class="wrap">
+      <div class="head">
+        <h2>Two scales, two jobs</h2>
+        <p class="lede">The console's scale is a dense-tool scale — per tokens.css, "the console
+          drops body to 15px and caps the largest thing on any screen at 22px: an operator reads a
+          queue, not a pitch." The landing's own scale sells, and can afford to: its <code>h1</code>
+          alone runs from 34px to 60px depending on viewport.</p>
+      </div>
+      <div class="type-scale-cols">
+        <div>
+          <h4>Console scale (tokens.css)</h4>
+          <div id="type-scale"></div>
+        </div>
+        <div>
+          <h4>Landing scale (styles.css)</h4>
+          <div id="type-scale-landing"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENSES -->
+  <section id="licenses">
+    <div class="wrap">
+      <div class="head">
+        <h2>All six are free — but not the same free</h2>
+        <p class="lede">Google Fonts only serves openly-licensed families, so "free" is true for all
+          six — but the licenses themselves are not identical, and the difference is checkable, not
+          asserted. Five of the six carry the SIL Open Font License 1.1, the license most Google
+          Fonts families use. JetBrains Mono is the odd one out: JetBrains distributes it under the
+          Apache License 2.0, not OFL.</p>
+      </div>
+      <table class="info-table">
+        <thead>
+          <tr><th>Family</th><th>Used by</th><th>License</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="fam">Unbounded</td><td>ago-console</td><td class="lic">SIL Open Font License 1.1</td></tr>
+          <tr><td class="fam">Manrope</td><td>ago-console</td><td class="lic">SIL Open Font License 1.1</td></tr>
+          <tr><td class="fam">JetBrains Mono</td><td>ago-console</td><td class="lic">Apache License 2.0</td></tr>
+          <tr><td class="fam">Onest</td><td>ago-landing</td><td class="lic">SIL Open Font License 1.1</td></tr>
+          <tr><td class="fam">IBM Plex Sans</td><td>ago-landing</td><td class="lic">SIL Open Font License 1.1</td></tr>
+          <tr><td class="fam">IBM Plex Mono</td><td>ago-landing</td><td class="lic">SIL Open Font License 1.1</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Both licenses permit commercial use, modification and redistribution with no
+        royalty. The practical difference that actually matters if either family is ever vendored
+        rather than loaded from Google Fonts: OFL requires a modified font to be renamed before
+        redistribution and forbids selling the font file by itself; Apache 2.0 carries neither
+        restriction, plus an explicit patent grant OFL does not make. Neither difference changes
+        anything about loading these six from <code>fonts.googleapis.com</code>, which is what both
+        sites actually do today.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>AGO Brandbook</span>
+    <a href="https://reserve-me.ru" target="_blank" rel="noopener">reserve-me.ru ↗</a>
+    <a href="https://github.com/golyakoff/ago-brandbook" target="_blank" rel="noopener">Source ↗</a>
+    <span>© 2026 AGO Platform</span>
+  </div>
+</footer>
+
+<script src="tokens.js"></script>
+</body>
+</html>
