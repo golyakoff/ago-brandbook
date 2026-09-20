@@ -19,13 +19,18 @@
 <header class="top">
   <div class="wrap topbar">
     <a class="wordmark" href="index.html"><span class="g">A</span>AGO Brandbook</a>
-    <nav class="pagenav" aria-label="Brandbook sections">
-      <a href="index.html">Color</a>
-      <a href="typography.html" aria-current="page">Type</a>
-      <a href="icons.html">Icons</a>
-      <a href="components.html">Components</a>
-      <a href="logo.html">Logo</a>
-    </nav>
+    <div class="topbar-end">
+      <nav class="pagenav" aria-label="Brandbook sections">
+        <a href="index.html">Color</a>
+        <a href="typography.html" aria-current="page">Type</a>
+        <a href="icons.html">Icons</a>
+        <a href="components.html">Components</a>
+        <a href="logo.html">Logo</a>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <span id="themeIcon" aria-hidden="true">☾</span>
+      </button>
+    </div>
   </div>
   <div class="wrap">
     <p class="lede">Two real type systems, not one — the same "both real, shown honestly, not
@@ -185,6 +190,7 @@
   </div>
 </footer>
 
+<script src="theme.js"></script>
 <script src="tokens.js"></script>
 </body>
 </html>

@@ -3,10 +3,9 @@
    components - the same "show the real values, don't run the real code" treatment `index.html`'s
    color section already gives `tokens.css` (copied into `tokens.js` as plain data) and this page's
    own typography section gives the two font stacks. Every selector below that starts with
-   `.ago-` is copied verbatim from `components.css` (light theme only - the console ships light-only,
-   `tokens.css`'s own header comment cites `adr/0030`'s 2026-08-26 amendment for why). Everything is
-   scoped under `.console-demo` so this page's own chrome (`styles.css`) and the real console classes
-   never fight over a property, even though none of the class names actually collide.
+   `.ago-` is copied verbatim from `components.css`. Everything is scoped under `.console-demo` so
+   this page's own chrome (`styles.css`) and the real console classes never fight over a property,
+   even though none of the class names actually collide.
 
    Two exceptions, both labelled where they appear:
    - the `--ago-*` custom properties are declared on `.console-demo` itself, not `:root` - this page
@@ -15,7 +14,16 @@
      set. `:hover` still works live on every real control below with a mouse; these helpers exist
      only so a static screenshot or a screen-reader pass sees the hover state too, each one
      mirroring the real rule immediately above it rather than inventing a new look. The dialog demo
-     uses the real `<dialog open>` attribute instead of a helper class - see `.dialog-stage` below. */
+     uses the real `<dialog open>` attribute instead of a helper class - see `.dialog-stage` below.
+
+   `25-184`: the `--ago-*` block below used to carry only the console's light values, on the (already
+   stale by the day it was written) premise that the console is light-only - see `components.html`'s
+   own header comment for the correction. The "DARK" block further down carries the console's real
+   dark values, copied the same hand-authored way from `tokens.css`'s own dark block, and follows
+   this page's own toggle (`theme.js`'s `data-theme` on `<html>`) rather than a second switch -
+   `:root[data-theme="dark"] .console-demo` plus the matching `prefers-color-scheme` media guard.
+   These are the console's dark tokens, not the brandbook's own dark chrome (`styles.css`'s `--bg`/
+   `--panel`/...) - two different real palettes, kept separate on purpose. */
 
 .console-demo {
   /* --- Type (light theme reads Manrope/JetBrains Mono; Unbounded is not used by any component) --- */
@@ -76,6 +84,80 @@
   --ago-transition: 0.16s ease;
 
   color: var(--ago-ink);
+}
+
+/* ============================================================================ Dark theme (25-184)
+   Copied from `tokens.css`'s own dark block (search that file for "DARK THEME") - only colour and
+   elevation tokens are redeclared, because none of the type/spacing/radius/motion tokens above
+   encode a colour and `tokens.css` itself does not redeclare them either. `--ago-live` is likewise
+   left out on purpose - `tokens.css`'s own comment notes it "is unchanged" between themes, so it
+   keeps reading from the base `.console-demo` block above rather than being repeated here.
+
+   Scoped to `.console-demo` under this *page's* `data-theme` attribute (`theme.js`, on `<html>`),
+   the same two-block shape (`prefers-color-scheme` + explicit override) `tokens.css` uses for the
+   console itself - just targeting `.console-demo` instead of `:root`, per this file's header
+   comment on why these tokens stay local to the demo section rather than leaking page-wide. These
+   are the console's real dark values, not the brandbook's own dark chrome (`styles.css`'s `--bg`/
+   `--panel`/`--ink`/...) - a page in dark mode shows two genuinely different dark palettes side by
+   side: its own chrome around the demo, and the console's inside it. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .console-demo {
+    --ago-ink: #f5f4ef;
+    --ago-ink-soft: #b0b0bf;
+    --ago-ink-faint: #9191a1;
+    --ago-paper: #13121c;
+    --ago-surface: #22202f;
+    --ago-surface-raised: #1c1b28;
+    --ago-surface-sunken: #0e0d14;
+    --ago-line: #323040;
+    --ago-line-strong: #787396;
+    --ago-brand: #6052ff;
+    --ago-brand-deep: #c3beff;
+    --ago-brand-hover: #1400f5;
+    --ago-brand-tint: #1d1a38;
+    --ago-lavender: #413a72;
+    --ago-lavender-dim: #9089c9;
+    --ago-lavender-ink: #c9c5f2;
+    --ago-mint: #0f2b22;
+    --ago-success: #7fe0af;
+    --ago-danger: #ff8a80;
+    --ago-danger-tint: #3a1613;
+    --ago-warning: #ffb74d;
+    --ago-warning-tint: #3a2a10;
+    --ago-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px -12px rgba(0, 0, 0, 0.6);
+    --ago-shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 28px -18px rgba(0, 0, 0, 0.65);
+    --ago-shadow-lg: 0 1px 1px rgba(0, 0, 0, 0.4), 0 20px 44px -24px rgba(0, 0, 0, 0.7);
+  }
+}
+/* The manual override - `data-theme="dark"` wins over `prefers-color-scheme` in either direction.
+   Same values as the block above; see this file's own header comment, and tokens.css's, for why the
+   repetition is deliberate rather than a mistake. */
+:root[data-theme="dark"] .console-demo {
+  --ago-ink: #f5f4ef;
+  --ago-ink-soft: #b0b0bf;
+  --ago-ink-faint: #9191a1;
+  --ago-paper: #13121c;
+  --ago-surface: #22202f;
+  --ago-surface-raised: #1c1b28;
+  --ago-surface-sunken: #0e0d14;
+  --ago-line: #323040;
+  --ago-line-strong: #787396;
+  --ago-brand: #6052ff;
+  --ago-brand-deep: #c3beff;
+  --ago-brand-hover: #1400f5;
+  --ago-brand-tint: #1d1a38;
+  --ago-lavender: #413a72;
+  --ago-lavender-dim: #9089c9;
+  --ago-lavender-ink: #c9c5f2;
+  --ago-mint: #0f2b22;
+  --ago-success: #7fe0af;
+  --ago-danger: #ff8a80;
+  --ago-danger-tint: #3a1613;
+  --ago-warning: #ffb74d;
+  --ago-warning-tint: #3a2a10;
+  --ago-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px -12px rgba(0, 0, 0, 0.6);
+  --ago-shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 28px -18px rgba(0, 0, 0, 0.65);
+  --ago-shadow-lg: 0 1px 1px rgba(0, 0, 0, 0.4), 0 20px 44px -24px rgba(0, 0, 0, 0.7);
 }
 
 /* ============================================================================ Button */

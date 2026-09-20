@@ -19,17 +19,33 @@
      section shows real hex values without importing tokens.css as a stylesheet. A handful of
      `.is-hover` helper classes (labelled where used) make a hover state visible without a mouse;
      every real `:hover` also still works live if you point a cursor at it. Dialogs use the real
-     `<dialog open>` attribute so they render already open, no click or JavaScript needed. -->
+     `<dialog open>` attribute so they render already open, no click or JavaScript needed.
+
+     `25-184`: this section used to say the demo was light theme only because "the console ships
+     light-only" - that was already false the day it was written. `tokens.css`'s own header comment
+     records that `adr/0030` point 4's original light-only call was reversed the same day, in an
+     addendum by the same author: the console has shipped a real, contrast-checked three-state
+     (system/light/dark) theme since. This page now demonstrates that - the dark values below are
+     copied from `tokens.css`'s own dark block (`@media (prefers-color-scheme: dark){
+     :root:not([data-theme="light"]){...} }` plus its `:root[data-theme="dark"]` twin) the same
+     hand-authored way `components.css` already copies the light ones, and follow this page's own
+     `data-theme` toggle (`theme.js`) rather than a second, independent switch - `[data-theme="dark"]
+     .console-demo` and the matching `prefers-color-scheme` media guard, both in `components.css`. -->
 <header class="top">
   <div class="wrap topbar">
     <a class="wordmark" href="index.html"><span class="g">A</span>AGO Brandbook</a>
-    <nav class="pagenav" aria-label="Brandbook sections">
-      <a href="index.html">Color</a>
-      <a href="typography.html">Type</a>
-      <a href="icons.html">Icons</a>
-      <a href="components.html" aria-current="page">Components</a>
-      <a href="logo.html">Logo</a>
-    </nav>
+    <div class="topbar-end">
+      <nav class="pagenav" aria-label="Brandbook sections">
+        <a href="index.html">Color</a>
+        <a href="typography.html">Type</a>
+        <a href="icons.html">Icons</a>
+        <a href="components.html" aria-current="page">Components</a>
+        <a href="logo.html">Logo</a>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <span id="themeIcon" aria-hidden="true">☾</span>
+      </button>
+    </div>
   </div>
   <div class="wrap">
     <p class="lede">The twelve real components AGO Console ships
@@ -437,5 +453,7 @@
     <span>© 2026 AGO Platform</span>
   </div>
 </footer>
+
+<script src="theme.js"></script>
 </body>
 </html>
