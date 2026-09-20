@@ -26,11 +26,12 @@ own:
   now loads a different three (`Onest`/`IBM Plex Sans`/`IBM Plex Mono`). `typography.html` shows both,
   with real specimens and each family's real license named (five carry the SIL Open Font License 1.1;
   `JetBrains Mono` carries the Apache License 2.0).
-- **Components** — the twelve real components `ago-console/src/components/` ships
-  (`Alert`/`Badge`/`Button`/`Dialog`/`Field`/`Input`/`Panel`/`Select`/`Spinner`/`Table`/`Textarea`/
-  `Tooltip`), each shown in its real states on `components.html`, styled by hand-authoring markup
-  against the real `components.css` and the token values it reads — not by importing React or
-  running the actual components.
+- **Components** — the thirteen real components `ago-console/src/components/` ships
+  (`Alert`/`Badge`/`Button`/`Dialog`/`Field`/`Input`/`Panel`/`PhoneInput`/`Select`/`Spinner`/`Table`/
+  `Textarea`/`Tooltip`), each shown in its real states on `components.html`, styled by hand-authoring
+  markup against the real `components.css` and the token values it reads — not by importing React or
+  running the actual components. `PhoneInput` (`25-186`) is the one real one-country phone field this
+  platform ships anywhere — the non-interactive 🇷🇺 +7 prefix, shown empty/filled/invalid.
 - **The five channel icons** — copied verbatim from `ago-chat`'s `25-172` (`telegram.svg`,
   `whatsapp.svg`, `vk.svg`, `max.svg`, `avito.svg`) into `icons/`. Not redrawn, recolored, or
   re-derived.
@@ -45,7 +46,7 @@ Filed as `docs/backlog/25-180-*.md` and `25-183-*.md` in `ago-root`.
 - `index.html` — overview + the color page.
 - `typography.html` — both real type systems, side by side, with real specimens and licenses.
 - `icons.html` — the five real channel marks.
-- `components.html` — the twelve real `ago-console` components, in their real states.
+- `components.html` — the thirteen real `ago-console` components, in their real states.
 - `logo.html` — the wordmark.
 - `styles.css` — this site's own small design system and shared nav/chrome (deliberately not shared
   with any source file — this site displays their tokens/components as data, it does not build a

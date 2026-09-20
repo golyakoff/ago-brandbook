@@ -219,6 +219,33 @@
   cursor: pointer;
 }
 
+/* 25-186: PhoneInput.tsx, copied verbatim from `ago-console/src/components/components.css` - the
+   non-interactive flag+prefix wrapper for the platform's one supported country. */
+.console-demo .ago-phone-input {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  background: var(--ago-surface);
+  border: 1px solid var(--ago-line-strong);
+  border-radius: var(--ago-radius-sm);
+  transition: border-color var(--ago-transition), box-shadow var(--ago-transition);
+}
+.console-demo .ago-phone-input:focus-within { border-color: var(--ago-brand); box-shadow: var(--ago-focus-halo); }
+.console-demo .ago-phone-input--invalid { border-color: var(--ago-danger); }
+.console-demo .ago-phone-input__prefix {
+  display: flex;
+  align-items: center;
+  gap: var(--ago-space-1);
+  padding: 0 var(--ago-space-3);
+  border-right: 1px solid var(--ago-line-strong);
+  color: var(--ago-ink-soft);
+  font-size: var(--ago-text-base);
+  white-space: nowrap;
+  user-select: none;
+}
+.console-demo .ago-phone-input .ago-control { border: none; background: transparent; box-shadow: none; }
+.console-demo .ago-phone-input .ago-control:focus-visible { box-shadow: none; }
+
 /* ============================================================================ Field */
 
 .console-demo .ago-field { display: flex; flex-direction: column; gap: var(--ago-space-1); }
