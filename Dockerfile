@@ -36,8 +36,16 @@ LABEL org.opencontainers.image.source="https://github.com/golyakoff/ago-brandboo
 # `15-08`'s own fix, carried in from the start rather than found the hard way a second time: without
 # this, nginx's own stock config sends no Cache-Control at all - see nginx.conf's own header comment.
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+# `25-183`: four real pages now, not one - named one by one, same discipline as the icons below.
 COPY index.html /usr/share/nginx/html/index.html
+COPY typography.html /usr/share/nginx/html/typography.html
+COPY icons.html /usr/share/nginx/html/icons.html
+COPY components.html /usr/share/nginx/html/components.html
+COPY logo.html /usr/share/nginx/html/logo.html
 COPY styles.css /usr/share/nginx/html/styles.css
+# `25-183`: the real ago-console component CSS this repository copies for the components page -
+# deliberately its own file, not folded into styles.css, which stays this page's own chrome.
+COPY components.css /usr/share/nginx/html/components.css
 COPY tokens.js /usr/share/nginx/html/tokens.js
 # The five real channel icons (25-172), named one by one rather than `COPY icons/` - explicit is what
 # keeps this list honest as the exact set of files this page ships, matching ago-landing's own

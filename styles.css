@@ -46,11 +46,20 @@ code{font-family:'JetBrains Mono',ui-monospace,'Consolas',monospace;}
 .kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--page-accent);}
 .lede{color:var(--ink-soft);font-size:16px;max-width:70ch;}
 
-header.top{padding:56px 0 30px;border-bottom:1px solid var(--line);}
-.wordmark{display:inline-flex;align-items:center;gap:10px;font-family:'Unbounded',sans-serif;font-weight:700;font-size:26px;}
+header.top{padding:34px 0 30px;border-bottom:1px solid var(--line);}
+.wordmark{display:inline-flex;align-items:center;gap:10px;font-family:'Unbounded',sans-serif;font-weight:700;font-size:26px;text-decoration:none;color:inherit;}
 .wordmark .g{width:34px;height:34px;border-radius:9px;background:linear-gradient(140deg,#4c8dff,#9d6bff);display:grid;place-items:center;color:#fff;font-size:17px;}
 header.top .lede{margin-top:14px;}
 header.top .src{margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint);}
+
+/* Page nav - 25-183. Five real .html files now, not one scroll; this is the one bit of markup
+   copy-pasted by hand into every page's own <header> to keep it consistent, the shape a static site
+   with no templating has to accept (see the item's own "no build step" note). */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--line);}
+.pagenav{display:flex;gap:2px;flex-wrap:wrap;font-family:'Manrope',sans-serif;}
+.pagenav a{padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:700;color:var(--ink-soft);text-decoration:none;transition:.15s;}
+.pagenav a:hover{color:var(--ink);background:var(--panel-2);}
+.pagenav a[aria-current="page"]{color:var(--ink);background:var(--panel-2);box-shadow:inset 0 0 0 1px var(--line);}
 
 section{padding:52px 0;border-bottom:1px solid var(--line);}
 section:last-of-type{border-bottom:none;}
@@ -94,6 +103,44 @@ section:last-of-type{border-bottom:none;}
 .logo-demo{border:1px solid var(--line);border-radius:var(--r-lg);padding:34px 44px;background:var(--panel-2);display:flex;align-items:center;justify-content:center;}
 .logo-demo .wordmark{font-size:34px;}
 .logo-block .lede{flex:1 1 320px;}
+
+/* Typography page - two systems, side by side, 25-183 */
+.type-systems{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:40px;}
+@media (max-width:760px){.type-systems{grid-template-columns:1fr;}}
+.system-block{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 26px;background:var(--panel);}
+.system-block .system-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+.system-block h3{font-size:18px;margin-top:6px;margin-bottom:4px;}
+.system-block .system-src{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-faint);margin-bottom:18px;}
+.system-block .families{margin-bottom:0;}
+
+.type-scale-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:28px 0 40px;}
+@media (max-width:760px){.type-scale-cols{grid-template-columns:1fr;}}
+.type-scale-cols h4{font-size:14px;margin-bottom:10px;color:var(--ink-soft);}
+
+.info-table{width:100%;border-collapse:collapse;margin-top:8px;}
+.info-table th,.info-table td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);font-size:13.5px;}
+.info-table thead th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;}
+.info-table td.fam{font-weight:700;}
+.info-table td.lic{font-family:'JetBrains Mono',monospace;font-size:12.5px;}
+.info-table tbody tr:last-child td{border-bottom:none;}
+.callout{border:1px solid var(--line);border-left:3px solid var(--page-accent);border-radius:0 var(--r) var(--r) 0;background:var(--panel);padding:16px 18px;font-size:13.5px;color:var(--ink-soft);margin:22px 0;max-width:80ch;}
+.callout code{color:var(--ink-soft);}
+
+/* Components page scaffolding - the brandbook's own chrome around each demo, never the component
+   styling itself (that lives in components.css, matching ago-console's real classes/tokens). */
+.demo-block{margin-bottom:52px;}
+.demo-block h3{font-size:17px;margin-bottom:4px;}
+.demo-block .demo-note{font-size:13px;color:var(--ink-faint);max-width:78ch;margin-bottom:18px;}
+.demo-stage{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--panel-2);padding:26px;}
+.demo-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:14px;}
+.demo-row:last-child{margin-bottom:0;}
+.demo-row-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);width:100%;margin-bottom:2px;}
+.demo-col{display:flex;flex-direction:column;gap:14px;}
+.demo-item{display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
+.demo-cap{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);}
+.jump-nav{display:flex;flex-wrap:wrap;gap:8px 16px;margin:18px 0 0;padding:0;list-style:none;font-family:'JetBrains Mono',monospace;font-size:11.5px;}
+.jump-nav a{color:var(--ink-faint);text-decoration:none;}
+.jump-nav a:hover{color:var(--page-accent);}
 
 footer{padding:36px 0 60px;}
 .foot-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--ink-faint);}

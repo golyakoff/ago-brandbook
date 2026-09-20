@@ -51,6 +51,20 @@ const typeScale = [
   { tok: "--ago-text-display", size: "22px", role: "the shell wordmark, the only Unbounded on the screen" },
 ];
 
+// 25-183: `ago-landing/styles.css`'s own current type scale (no `--token` names there - it sets
+// bare `h1`/`h2`/`h3`/`body` rules directly), read from the selector next to each row. `clamp()`
+// values are quoted verbatim rather than reduced to one number, and rendered with the same
+// `font-size:clamp(...)` string below, so the sample is genuinely responsive the way the real
+// heading is - not a snapshot of one viewport width standing in for the real rule.
+const landingTypeScale = [
+  { tok: "h1", size: "clamp(34px,5.2vw,60px)", font: "'Onest',sans-serif", weight: 800, role: "the hero headline - one per page" },
+  { tok: "h2", size: "clamp(25px,3.2vw,38px)", font: "'Onest',sans-serif", weight: 800, role: "section headings" },
+  { tok: "h3", size: "17px", font: "'Onest',sans-serif", weight: 700, role: "card and step titles" },
+  { tok: "body", size: "15.5px", font: "'IBM Plex Sans',sans-serif", weight: 400, role: "the page's own base size - paragraph copy" },
+  { tok: ".lede", size: "16.5px", font: "'IBM Plex Sans',sans-serif", weight: 400, role: "the lede under a heading" },
+  { tok: ".kicker", size: "11.5px", font: "'IBM Plex Mono',monospace", weight: 500, role: "eyebrow labels - uppercase, .14em tracking" },
+];
+
 function renderSwatches(containerId, tokens) {
   const el = document.getElementById(containerId);
   if (!el) return;
@@ -72,7 +86,7 @@ function renderTypeScale(containerId, scale) {
   el.innerHTML = scale.map(t => `
     <div class="type-row">
       <span class="tok">${t.tok} · ${t.size}</span>
-      <span class="sample" style="font-family:'Manrope',sans-serif;font-size:${t.size};">${t.role}</span>
+      <span class="sample" style="font-family:${t.font || "'Manrope',sans-serif"};font-weight:${t.weight || 400};font-size:${t.size};">${t.role}</span>
     </div>
   `).join("");
 }
@@ -82,3 +96,4 @@ renderSwatches("swatches-console-status", consoleStatus);
 renderSwatches("swatches-console-neutral", consoleNeutral);
 renderSwatches("swatches-landing", landing);
 renderTypeScale("type-scale", typeScale);
+renderTypeScale("type-scale-landing", landingTypeScale);

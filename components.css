@@ -1,0 +1,267 @@
+/* 25-183: hand-authored to match `ago-console/src/components/components.css` and the token values
+   it reads from `ago-console/src/design/tokens.css`, without importing React or running the real
+   components - the same "show the real values, don't run the real code" treatment `index.html`'s
+   color section already gives `tokens.css` (copied into `tokens.js` as plain data) and this page's
+   own typography section gives the two font stacks. Every selector below that starts with
+   `.ago-` is copied verbatim from `components.css` (light theme only - the console ships light-only,
+   `tokens.css`'s own header comment cites `adr/0030`'s 2026-08-26 amendment for why). Everything is
+   scoped under `.console-demo` so this page's own chrome (`styles.css`) and the real console classes
+   never fight over a property, even though none of the class names actually collide.
+
+   Two exceptions, both labelled where they appear:
+   - the `--ago-*` custom properties are declared on `.console-demo` itself, not `:root` - this page
+     is not the console, so its tokens should not leak past the one section that demonstrates them.
+   - a handful of `.is-hover` helper classes at the bottom are NOT part of ago-console's real class
+     set. `:hover` still works live on every real control below with a mouse; these helpers exist
+     only so a static screenshot or a screen-reader pass sees the hover state too, each one
+     mirroring the real rule immediately above it rather than inventing a new look. The dialog demo
+     uses the real `<dialog open>` attribute instead of a helper class - see `.dialog-stage` below. */
+
+.console-demo {
+  /* --- Type (light theme reads Manrope/JetBrains Mono; Unbounded is not used by any component) --- */
+  --ago-font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ago-font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", "Consolas", monospace;
+  --ago-text-xs: 0.75rem;
+  --ago-text-sm: 0.8125rem;
+  --ago-text-base: 0.9375rem;
+  --ago-text-lg: 1.0625rem;
+  --ago-text-xl: 1.25rem;
+  --ago-leading-base: 1.5;
+
+  /* --- Ink / paper --- */
+  --ago-ink: #14141f;
+  --ago-ink-soft: #57546f;
+  --ago-ink-faint: #6b6780;
+  --ago-paper: #fbfaf7;
+  --ago-surface: #ffffff;
+  --ago-surface-raised: #fdfcfa;
+  --ago-surface-sunken: #f1efe9;
+  --ago-line: #e5e2da;
+  --ago-line-strong: #8d8675;
+
+  /* --- Brand --- */
+  --ago-brand: #4b3aff;
+  --ago-brand-deep: #3324c9;
+  --ago-brand-hover: var(--ago-brand-deep);
+  --ago-brand-tint: #ecebff;
+  --ago-lavender: #d9d6ff;
+  --ago-lavender-dim: #8f8ac9;
+  --ago-lavender-ink: #565096;
+
+  /* --- Status --- */
+  --ago-live: #33d17a;
+  --ago-mint: #eafffb;
+  --ago-success: #12684a;
+  --ago-danger: #9f1d17;
+  --ago-danger-tint: #fdecea;
+  --ago-warning: #7a4d00;
+  --ago-warning-tint: #fff4e0;
+
+  /* --- Spacing / radius / shadow / motion --- */
+  --ago-space-1: 0.25rem;
+  --ago-space-2: 0.5rem;
+  --ago-space-3: 0.75rem;
+  --ago-space-4: 1rem;
+  --ago-space-5: 1.25rem;
+  --ago-space-6: 1.5rem;
+  --ago-space-8: 2rem;
+  --ago-radius-sm: 0.5rem;
+  --ago-radius-md: 0.75rem;
+  --ago-radius-lg: 1rem;
+  --ago-radius-pill: 999px;
+  --ago-shadow-sm: 0 1px 2px rgba(20, 20, 31, 0.05), 0 6px 16px -12px rgba(20, 20, 31, 0.35);
+  --ago-shadow-md: 0 1px 2px rgba(20, 20, 31, 0.05), 0 12px 28px -18px rgba(20, 20, 31, 0.4);
+  --ago-shadow-lg: 0 1px 1px rgba(20, 20, 31, 0.05), 0 20px 44px -24px rgba(20, 20, 31, 0.45);
+  --ago-focus-halo: 0 0 0 3px var(--ago-brand-tint);
+  --ago-transition: 0.16s ease;
+
+  color: var(--ago-ink);
+}
+
+/* ============================================================================ Button */
+
+.console-demo .ago-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ago-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--ago-radius-md);
+  font-family: var(--ago-font-sans);
+  font-weight: 700;
+  font-size: var(--ago-text-base);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--ago-transition), border-color var(--ago-transition), color var(--ago-transition);
+}
+.console-demo .ago-btn--md { padding: var(--ago-space-3) var(--ago-space-5); min-height: 2.5rem; }
+.console-demo .ago-btn--sm { padding: var(--ago-space-2) var(--ago-space-3); min-height: 2rem; font-size: var(--ago-text-sm); }
+.console-demo .ago-btn:disabled { cursor: not-allowed; opacity: 0.55; }
+.console-demo .ago-btn--primary { background: var(--ago-brand); color: #fff; }
+.console-demo .ago-btn--primary:hover:not(:disabled) { background: var(--ago-brand-hover); }
+.console-demo .ago-btn--secondary { background: var(--ago-surface); color: var(--ago-ink); border-color: var(--ago-line-strong); }
+.console-demo .ago-btn--secondary:hover:not(:disabled) { background: var(--ago-brand-tint); border-color: var(--ago-brand); color: var(--ago-brand-deep); }
+.console-demo .ago-btn--ghost { background: transparent; color: var(--ago-brand-deep); }
+.console-demo .ago-btn--ghost:hover:not(:disabled) { background: var(--ago-brand-tint); }
+.console-demo .ago-btn--danger { background: var(--ago-surface); color: var(--ago-danger); border-color: var(--ago-danger); }
+.console-demo .ago-btn--danger:hover:not(:disabled) { background: var(--ago-danger-tint); }
+
+/* ============================================================================ Input / Textarea / Select */
+
+.console-demo .ago-control {
+  width: 100%;
+  background: var(--ago-surface);
+  color: var(--ago-ink);
+  border: 1px solid var(--ago-line-strong);
+  border-radius: var(--ago-radius-sm);
+  padding: var(--ago-space-2) var(--ago-space-3);
+  font-size: var(--ago-text-base);
+  font-family: var(--ago-font-sans);
+  transition: border-color var(--ago-transition), box-shadow var(--ago-transition);
+}
+.console-demo .ago-control:not(textarea) { min-height: 2.5rem; }
+.console-demo .ago-control:hover:not(:disabled) { border-color: var(--ago-ink-soft); }
+.console-demo .ago-control:focus-visible { border-color: var(--ago-brand); box-shadow: var(--ago-focus-halo); }
+.console-demo .ago-control:disabled { background: var(--ago-surface-sunken); color: var(--ago-ink-soft); cursor: not-allowed; }
+.console-demo .ago-control[aria-invalid="true"] { border-color: var(--ago-danger); }
+.console-demo .ago-control--textarea { min-height: 5rem; resize: vertical; }
+.console-demo .ago-control--select {
+  appearance: none;
+  padding-right: var(--ago-space-8);
+  background-image: linear-gradient(45deg, transparent 50%, var(--ago-ink-soft) 50%), linear-gradient(135deg, var(--ago-ink-soft) 50%, transparent 50%);
+  background-position: right calc(var(--ago-space-4) + 4px) center, right var(--ago-space-4) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* ============================================================================ Field */
+
+.console-demo .ago-field { display: flex; flex-direction: column; gap: var(--ago-space-1); }
+.console-demo .ago-field__label { font-size: var(--ago-text-sm); font-weight: 700; color: var(--ago-ink); }
+.console-demo .ago-field__description { font-size: var(--ago-text-sm); color: var(--ago-ink-soft); }
+.console-demo .ago-field__error { font-size: var(--ago-text-sm); font-weight: 600; color: var(--ago-danger); }
+.console-demo .ago-field__control-row { display: flex; align-items: center; gap: var(--ago-space-3); }
+
+/* ============================================================================ Table */
+
+.console-demo .ago-table-scroll { overflow-x: auto; border: 1px solid var(--ago-line); border-radius: var(--ago-radius-lg); background: var(--ago-surface); }
+.console-demo .ago-table { width: 100%; border-collapse: collapse; font-size: var(--ago-text-base); font-family: var(--ago-font-sans); }
+.console-demo .ago-table caption { text-align: left; padding: var(--ago-space-3) var(--ago-space-4) 0; font-size: var(--ago-text-sm); color: var(--ago-ink-soft); }
+.console-demo .ago-table th, .console-demo .ago-table td { text-align: left; padding: var(--ago-space-3) var(--ago-space-4); border-bottom: 1px solid var(--ago-line); }
+.console-demo .ago-table thead th { background: var(--ago-surface-sunken); font-size: var(--ago-text-sm); font-weight: 700; color: var(--ago-ink-soft); white-space: nowrap; }
+.console-demo .ago-table tbody tr:last-child td { border-bottom: none; }
+.console-demo .ago-table tbody tr:hover td { background: var(--ago-surface-raised); }
+.console-demo .ago-table .ago-table__cell--end { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ============================================================================ Badge */
+
+.console-demo .ago-badge { display: inline-flex; align-items: center; gap: var(--ago-space-2); border-radius: var(--ago-radius-pill); padding: var(--ago-space-1) var(--ago-space-3); font-size: var(--ago-text-xs); font-weight: 700; line-height: 1.4; white-space: nowrap; font-family: var(--ago-font-sans); }
+.console-demo .ago-badge__dot { width: 6px; height: 6px; border-radius: 50%; background: currentcolor; flex: none; }
+.console-demo .ago-badge--neutral { background: var(--ago-surface-sunken); color: var(--ago-ink); }
+.console-demo .ago-badge--brand { background: var(--ago-brand-tint); color: var(--ago-brand-deep); }
+.console-demo .ago-badge--accent { background: var(--ago-lavender); color: var(--ago-lavender-ink); }
+.console-demo .ago-badge--success { background: var(--ago-mint); color: var(--ago-success); }
+.console-demo .ago-badge--success .ago-badge__dot { background: var(--ago-live); box-shadow: 0 0 0 3px rgba(51, 209, 122, 0.22); }
+.console-demo .ago-badge--danger { background: var(--ago-danger-tint); color: var(--ago-danger); }
+.console-demo .ago-badge--mono { font-family: var(--ago-font-mono); font-weight: 600; letter-spacing: 0.02em; }
+
+/* ============================================================================ Panel */
+
+.console-demo .ago-panel { background: var(--ago-surface); border: 1px solid var(--ago-line); border-radius: var(--ago-radius-lg); box-shadow: var(--ago-shadow-sm); padding: var(--ago-space-5); display: flex; flex-direction: column; gap: var(--ago-space-4); }
+.console-demo .ago-panel--quiet { background: var(--ago-surface-raised); box-shadow: none; }
+.console-demo .ago-panel__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ago-space-4); flex-wrap: wrap; }
+.console-demo .ago-panel__title { font-size: var(--ago-text-lg); font-family: var(--ago-font-sans); font-weight: 700; }
+.console-demo .ago-panel__description { margin-top: var(--ago-space-1); font-size: var(--ago-text-sm); color: var(--ago-ink-soft); max-width: 62ch; }
+.console-demo .ago-panel__actions { display: flex; align-items: center; gap: var(--ago-space-2); }
+.console-demo .ago-panel__body { display: flex; flex-direction: column; gap: var(--ago-space-3); font-size: var(--ago-text-base); }
+
+/* ============================================================================ Alert */
+
+.console-demo .ago-alert { display: flex; align-items: flex-start; gap: var(--ago-space-3); border: 1px solid; border-radius: var(--ago-radius-md); padding: var(--ago-space-3) var(--ago-space-4); font-size: var(--ago-text-base); font-family: var(--ago-font-sans); }
+.console-demo .ago-alert__body { display: flex; flex-direction: column; gap: var(--ago-space-2); align-items: flex-start; }
+.console-demo .ago-alert__title { font-weight: 700; }
+.console-demo .ago-alert--danger { background: var(--ago-danger-tint); border-color: var(--ago-danger); color: var(--ago-danger); }
+.console-demo .ago-alert--success { background: var(--ago-mint); border-color: var(--ago-success); color: var(--ago-success); }
+.console-demo .ago-alert--info { background: var(--ago-brand-tint); border-color: var(--ago-lavender-dim); color: var(--ago-brand-deep); }
+.console-demo .ago-alert__action > :is(a, button) { display: inline-flex; align-items: center; min-height: 2rem; }
+.console-demo .ago-alert__glyph { flex: none; line-height: var(--ago-leading-base); font-weight: 800; }
+
+/* ============================================================================ Spinner / Skeleton */
+
+.console-demo .ago-spinner-row { display: inline-flex; align-items: center; gap: var(--ago-space-3); color: var(--ago-ink-soft); font-size: var(--ago-text-base); font-family: var(--ago-font-sans); }
+.console-demo .ago-spinner { width: 1.125rem; height: 1.125rem; flex: none; border-radius: 50%; border: 2px solid var(--ago-lavender); border-top-color: var(--ago-brand); animation: console-demo-spin 0.7s linear infinite; }
+@keyframes console-demo-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .console-demo .ago-spinner { animation: none; } }
+.console-demo .ago-skeleton { display: block; height: 1rem; border-radius: var(--ago-radius-sm); background: linear-gradient(90deg, var(--ago-surface-sunken), var(--ago-line), var(--ago-surface-sunken)); background-size: 200% 100%; animation: console-demo-shimmer 1.4s ease-in-out infinite; }
+@keyframes console-demo-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.console-demo .ago-skeleton-stack { display: flex; flex-direction: column; gap: var(--ago-space-3); }
+
+/* ============================================================================ Dialog */
+
+.console-demo .ago-dialog { width: min(32rem, calc(100vw - var(--ago-space-8))); padding: 0; border: 1px solid var(--ago-line); border-radius: var(--ago-radius-lg); background: var(--ago-surface); color: var(--ago-ink); box-shadow: var(--ago-shadow-lg); font-family: var(--ago-font-sans); }
+.console-demo .ago-dialog__inner { display: flex; flex-direction: column; gap: var(--ago-space-4); padding: var(--ago-space-5); }
+.console-demo .ago-dialog__title { font-size: var(--ago-text-lg); font-weight: 700; text-align: center; }
+.console-demo .ago-dialog__footer { display: flex; justify-content: flex-end; gap: var(--ago-space-2); }
+.console-demo .ago-dialog--drawer {
+  position: fixed;
+  inset: 0 auto 0 0;
+  margin: 0;
+  width: min(20rem, 85vw);
+  height: 100%;
+  max-height: none;
+  border-radius: 0 var(--ago-radius-lg) var(--ago-radius-lg) 0;
+  border-left: none;
+  transform: translateX(-100%);
+  transition: transform 0.16s ease, overlay 0.16s ease allow-discrete, display 0.16s ease allow-discrete;
+}
+.console-demo .ago-dialog--drawer[open] { transform: translateX(0); }
+@starting-style {
+  .console-demo .ago-dialog--drawer[open] { transform: translateX(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .console-demo .ago-dialog--drawer { transition: none; }
+}
+.console-demo .ago-dialog--drawer .ago-dialog__inner { height: 100%; overflow-y: auto; }
+
+/* ============================================================================ Tooltip */
+
+.console-demo .ago-tooltip-row { display: flex; align-items: center; gap: var(--ago-space-2); }
+.console-demo .ago-tooltip { position: relative; display: inline-flex; }
+.console-demo .ago-tooltip__trigger { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; padding: 0; border: 1px solid var(--ago-line-strong); border-radius: var(--ago-radius-pill); background: var(--ago-surface); color: var(--ago-ink-soft); font-family: var(--ago-font-sans); font-size: var(--ago-text-xs); font-weight: 700; line-height: 1; cursor: help; transition: background var(--ago-transition), border-color var(--ago-transition), color var(--ago-transition); }
+.console-demo .ago-tooltip__trigger:hover { background: var(--ago-brand-tint); border-color: var(--ago-brand); color: var(--ago-brand-deep); }
+.console-demo .ago-tooltip__bubble { position: absolute; z-index: 1; top: calc(100% + var(--ago-space-2)); left: 0; width: max-content; max-width: 18rem; padding: var(--ago-space-2) var(--ago-space-3); border: 1px solid var(--ago-line-strong); border-radius: var(--ago-radius-sm); background: var(--ago-surface-raised); color: var(--ago-ink); font-family: var(--ago-font-sans); font-size: var(--ago-text-sm); font-weight: 400; line-height: var(--ago-leading-base); box-shadow: var(--ago-shadow-md); }
+
+/* ============================================================================ States (shared, not a component) */
+
+.console-demo .ago-empty { padding: var(--ago-space-6) var(--ago-space-4); border: 1px dashed var(--ago-line-strong); border-radius: var(--ago-radius-md); background: var(--ago-surface-raised); color: var(--ago-ink-soft); text-align: center; font-size: var(--ago-text-base); font-family: var(--ago-font-sans); }
+
+/* ============================================================================ Demo-only helpers
+   Not part of ago-console's real class set - see the file's own header comment. Each mirrors the
+   real rule directly above it in this file, so a static page can show the state without a mouse.
+   Dialogs additionally need a stage to render "open" in without covering the viewport. The base
+   `.ago-dialog` carries no positioning rule at all in the real file - its host, `<dialog>`/
+   `showModal()`, centers it - so `.dialog-stage`'s flex centering below is this page's own harness,
+   not a component rule. The drawer variant's real rule genuinely is `position: fixed` (copied
+   whole, transform/transition included) because that is what pins it to the viewport edge in
+   `ago-console`; the one line this page overrides is that same `position`, to `absolute` against
+   `.dialog-stage--drawer` instead of the real viewport, because a `position: fixed` element cannot
+   be constrained to a boxed demo on a longer page. */
+
+.console-demo .ago-btn--primary.is-hover { background: var(--ago-brand-hover); }
+.console-demo .ago-btn--secondary.is-hover { background: var(--ago-brand-tint); border-color: var(--ago-brand); color: var(--ago-brand-deep); }
+.console-demo .ago-btn--ghost.is-hover { background: var(--ago-brand-tint); }
+.console-demo .ago-btn--danger.is-hover { background: var(--ago-danger-tint); }
+.console-demo .ago-control.is-hover { border-color: var(--ago-ink-soft); }
+.console-demo .ago-tooltip__trigger.is-hover { background: var(--ago-brand-tint); border-color: var(--ago-brand); color: var(--ago-brand-deep); }
+/* No `.is-open` helper needed for the tooltip bubble: the real rule above never sets
+   `display: none`, so a bubble present in the markup is already visible - visibility is the real
+   component's job (it does not render the bubble into the DOM at all until hover/focus), not a CSS
+   toggle this page needs to reproduce. */
+
+.console-demo .dialog-stage { position: relative; min-height: 320px; border-radius: var(--ago-radius-lg); background: rgba(12, 26, 25, 0.45); display: flex; align-items: center; justify-content: center; padding: var(--ago-space-6); overflow: hidden; }
+.console-demo .dialog-stage .ago-dialog { position: relative; }
+.console-demo .dialog-stage--drawer { justify-content: flex-start; padding: 0; }
+.console-demo .dialog-stage--drawer .ago-dialog--drawer { position: absolute; inset: 0 auto 0 0; margin: 0; }
