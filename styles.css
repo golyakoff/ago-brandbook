@@ -65,7 +65,9 @@ code{font-family:'JetBrains Mono',ui-monospace,'Consolas',monospace;}
 
 header.top{padding:34px 0 30px;border-bottom:1px solid var(--line);}
 .wordmark{display:inline-flex;align-items:center;gap:10px;font-family:'Unbounded',sans-serif;font-weight:700;font-size:26px;text-decoration:none;color:inherit;}
-.wordmark .g{width:34px;height:34px;border-radius:9px;background:linear-gradient(140deg,#4c8dff,#9d6bff);display:grid;place-items:center;color:#fff;font-size:17px;}
+/* Glyph +20% over the original 17px, the author's own pick from a side-by-side comparison of five
+   candidates (+10% through +50%) - box/gradient/radius unchanged. */
+.wordmark .g{width:34px;height:34px;border-radius:9px;background:linear-gradient(140deg,#4c8dff,#9d6bff);display:grid;place-items:center;color:#fff;line-height:1;font-size:20.4px;}
 header.top .lede{margin-top:14px;}
 header.top .src{margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint);}
 
