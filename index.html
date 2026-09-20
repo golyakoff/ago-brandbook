@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AGO Brandbook — цвета, типографика и каналы AGO Platform в одном месте.">
+<title>AGO Brandbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- 25-180: a reference page, not a product. Every value on it is copied from a file this
+     repository does not own - ago-landing/styles.css and ago-console/src/design/tokens.css for
+     color and type, and 25-172's own icons/*.svg for the five channel marks. Nothing here is
+     invented; where the two source files disagree (see the color section below), that
+     disagreement is shown rather than resolved, because resolving it is not this item's job. -->
+<header class="top">
+  <div class="wrap">
+    <span class="wordmark"><span class="g">A</span>AGO Brandbook</span>
+    <p class="lede">AGO Platform's visual identity, gathered from where it actually lives — colours
+      and type traced from <code>ago-landing</code>'s own front page and <code>ago-console</code>'s
+      design tokens, plus the five real channel icons AGO Chat ships. Nothing on this page is
+      designed here; it is copied, sourced, and shown.</p>
+    <p class="src">Sources: ago-landing/styles.css · ago-console/src/design/tokens.css · ago-chat 25-172 (channel icons)</p>
+  </div>
+</header>
+
+<main>
+  <!-- COLOR -->
+  <section id="color">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Color</span>
+        <h2>Two palettes, both real</h2>
+        <p class="lede">The console's tokens (<code>ago-console/src/design/tokens.css</code>) are the
+          canonical set — the file's own header calls it "the single source" and traces every value
+          back to an earlier version of the landing page. The landing page has since been redesigned
+          around its own, narrower palette (its own stylesheet calls this "a second stylesheet...
+          this page's redesign changes tokens, type and component shapes wholesale"). Both are shown
+          below, honestly, rather than picking one and pretending the other doesn't exist.</p>
+      </div>
+
+      <div class="swatch-group">
+        <h3>Console tokens — brand &amp; accent</h3>
+        <p class="group-note">"the console spends [brand] on exactly one primary action per screen,
+          the active navigation item, links, and the focus ring" — tokens.css's own usage-restraint
+          comment, contrasted there with the landing page, which "paints whole sections" in it. Light
+          values shown; the file also carries a full measured dark palette for each.</p>
+        <div class="swatches" id="swatches-console-brand"></div>
+      </div>
+
+      <div class="swatch-group">
+        <h3>Console tokens — status</h3>
+        <p class="group-note">Danger and warning are kept in the "same darkness band" on purpose,
+          per tokens.css, "so it reads as a sibling of the palette rather than a bootstrap red."
+          Warning is deliberately not danger-toned: "the whole point is that this must not read as a
+          sibling of danger" (25-83's own decision, quoted in tokens.css).</p>
+        <div class="swatches" id="swatches-console-status"></div>
+      </div>
+
+      <div class="swatch-group">
+        <h3>Console tokens — ink &amp; paper</h3>
+        <p class="group-note">Every pair here "was measured (WCAG 2.1 relative luminance) rather than
+          eyeballed" — tokens.css records the ratio inline for each. Text pairs clear 4.5:1.</p>
+        <div class="swatches" id="swatches-console-neutral"></div>
+      </div>
+
+      <div class="swatch-group">
+        <h3>Landing's own palette</h3>
+        <p class="group-note">The front page's current design system (<code>ago-landing/styles.css</code>),
+          dark-first: "the page was designed as a control panel and reads as one." Not the same values
+          as the console tokens above — this is the redesign the console's own file predates.</p>
+        <div class="swatches" id="swatches-landing"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <section id="type">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Type</span>
+        <h2>Three families, one job each</h2>
+        <p class="lede">Per tokens.css: "Manrope carries the interface, Unbounded is confined to the
+          shell's identity (the wordmark and nothing else — display type in a dense tool is noise),
+          JetBrains Mono is for values that are literally identifiers: conversation/visitor ids,
+          sequence numbers, hex colours."</p>
+      </div>
+
+      <div class="families">
+        <div class="family-card">
+          <div class="fam-name">--ago-font-sans</div>
+          <div class="fam-sample" style="font-family:'Manrope',sans-serif;font-weight:600;">Manrope</div>
+          <div class="fam-role">Interface text — every label, paragraph and control.</div>
+        </div>
+        <div class="family-card">
+          <div class="fam-name">--ago-font-display</div>
+          <div class="fam-sample" style="font-family:'Unbounded',sans-serif;font-weight:700;">Unbounded</div>
+          <div class="fam-role">The wordmark only — one use per screen, by design.</div>
+        </div>
+        <div class="family-card">
+          <div class="fam-name">--ago-font-mono</div>
+          <div class="fam-sample" style="font-family:'JetBrains Mono',monospace;font-weight:600;">JetBrains Mono</div>
+          <div class="fam-role">Identifiers: ids, sequence numbers, hex colours.</div>
+        </div>
+      </div>
+
+      <div class="head" style="margin-bottom:16px;">
+        <h3 style="font-size:16px;">Console type scale (<code>tokens.css</code>)</h3>
+        <p class="note">"the console drops body to 15px and caps the largest thing on any screen at
+          22px: an operator reads a queue, not a pitch."</p>
+      </div>
+      <div id="type-scale"></div>
+    </div>
+  </section>
+
+  <!-- ICONS -->
+  <section id="icons">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Channel icons</span>
+        <h2>The five real channel marks</h2>
+        <p class="lede">Copied verbatim from <code>25-172</code>'s own approved SVG files — not
+          redrawn, recolored, or re-derived. These are the exact assets AGO Chat ships for each
+          incoming channel.</p>
+      </div>
+      <div class="icon-grid">
+        <div class="icon-card"><img src="icons/telegram.svg" alt="Telegram"><span class="icon-name">Telegram</span><span class="icon-file">icons/telegram.svg</span></div>
+        <div class="icon-card"><img src="icons/whatsapp.svg" alt="WhatsApp"><span class="icon-name">WhatsApp</span><span class="icon-file">icons/whatsapp.svg</span></div>
+        <div class="icon-card"><img src="icons/vk.svg" alt="ВКонтакте"><span class="icon-name">ВКонтакте</span><span class="icon-file">icons/vk.svg</span></div>
+        <div class="icon-card"><img src="icons/max.svg" alt="MAX"><span class="icon-name">MAX</span><span class="icon-file">icons/max.svg</span></div>
+        <div class="icon-card"><img src="icons/avito.svg" alt="Авито"><span class="icon-name">Авито</span><span class="icon-file">icons/avito.svg</span></div>
+      </div>
+      <p class="note">Used at, e.g., AGO Chat's operator queue and the widget's own channel picker —
+        one icon per linked channel identity, never redrawn per surface.</p>
+    </div>
+  </section>
+
+  <!-- LOGO -->
+  <section id="logo">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Logo</span>
+        <h2>A wordmark, not a mark</h2>
+        <p class="lede">There is no separate logo symbol anywhere in <code>ago-landing</code> or
+          <code>ago-console</code> today — only the "AGO" name, set in the display face, with a small
+          gradient tile carrying its first letter (<code>ago-landing</code>'s own <code>.brand .g</code>
+          and <code>ago-console</code>'s shell wordmark use the identical idea). That wordmark is the
+          logo for this page's purposes; inventing a new symbol would be adding to the identity, not
+          documenting it.</p>
+      </div>
+      <div class="logo-block">
+        <div class="logo-demo"><span class="wordmark"><span class="g">A</span>AGO</span></div>
+        <p class="lede">The gradient tile runs <code>--blue</code> → <code>--violet</code> in the
+          landing's own palette (linear-gradient(140deg, var(--blue), var(--violet))) — the same pair
+          shown in the landing swatches above.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>AGO Brandbook</span>
+    <a href="https://reserve-me.ru" target="_blank" rel="noopener">reserve-me.ru ↗</a>
+    <a href="https://github.com/golyakoff/ago-brandbook" target="_blank" rel="noopener">Source ↗</a>
+    <span>© 2026 AGO Platform</span>
+  </div>
+</footer>
+
+<script src="tokens.js"></script>
+</body>
+</html>

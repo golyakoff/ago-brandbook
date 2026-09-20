@@ -1,0 +1,101 @@
+name: CI
+
+# `25-180`, modelled byte-for-byte on ago-landing's own ci.yml (`15-07`/`adr/0051`). This repository
+# had no workflow at all until now, which was defensible only while nothing here was published: a
+# placeholder README on `main`. It is not defensible once the brandbook page is an image in a
+# registry, so this file gives it the two things every other frontend already has - a check that the
+# artefact builds on every pull request, and a publish that happens only from `main`.
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  # There is no npm project here, so there is nothing to typecheck, lint or unit-test - the whole
+  # deliverable is index.html/styles.css/tokens.js and the Dockerfile that wraps them. Building the
+  # image *is* the test: it catches a missing file, a broken base-image tag, and (via the check below)
+  # a version.json that would ship without a commit in it. Inventing a linter to make this job look
+  # like ago-console's would be ceremony, not coverage.
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build the image
+        env:
+          DOCKER_BUILDKIT: "1"
+        run: docker build --build-arg "GIT_COMMIT=${{ github.sha }}" -t ago-brandbook:ci .
+
+      - name: Check the image can name its own commit
+        run: |
+          set -euo pipefail
+          served=$(docker run --rm --entrypoint cat ago-brandbook:ci /usr/share/nginx/html/version.json)
+          echo "$served"
+          echo "$served" | grep -q '"commit":"${{ github.sha }}"'
+
+  # Only on `main`, and only after build-image passed - a pull request never publishes, so a fork or
+  # a draft branch cannot put an image into the registry a deploy might later reach for. Modelled on
+  # ago-landing's own publish-images job (adr/0047).
+  publish-images:
+    needs: build-image
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # A repository's own GITHUB_TOKEN can write to that repository's own package feed - the same
+      # property adr/0018 already relies on for the NuGet feed, so publishing needs no new secret.
+      # Only *reading* a private package would, which is exactly why adr/0047 wants these public.
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+
+      # No docker/login-action: `docker login` with the workflow token does the same thing with one
+      # fewer third-party action in the supply chain.
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      # Rebuilt rather than carried over from build-image: two layers on top of a cached base take
+      # seconds, and passing an image between jobs means a tarball artifact - more machinery than
+      # the thing it would save. GIT_COMMIT is the only build arg this image has, by design: there
+      # is no environment input to leave out.
+      - name: Build the brandbook image
+        env:
+          DOCKER_BUILDKIT: "1"
+        run: |
+          set -euo pipefail
+          repo="ghcr.io/${{ github.repository_owner }}/ago-brandbook"
+          docker build \
+            --build-arg "GIT_COMMIT=${{ github.sha }}" \
+            -t "${repo}:${{ github.sha }}" \
+            -t "${repo}:main" \
+            .
+
+      # `17-04`/`15-06`: scans before push - see ago-chat's ci.yml for the fuller reasoning (why
+      # before push rather than after, the threshold, and why the Trivy image is pinned by digest
+      # rather than trusted at a floating tag or through `aquasecurity/trivy-action`, whose tags and
+      # whose Docker Hub image were both compromised in March 2026).
+      - name: Scan image for known vulnerabilities (Trivy)
+        run: |
+          set -euo pipefail
+          repo="ghcr.io/${{ github.repository_owner }}/ago-brandbook"
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy@sha256:62b1e65e8869bc4b4c6aa4fa2b21595256c7c2f6018a9d9ad61caf87187c1969 \
+            image --scanners vuln --severity CRITICAL,HIGH --exit-code 1 --format table \
+            "${repo}:${{ github.sha }}"
+
+      - name: Push the brandbook image
+        run: |
+          set -euo pipefail
+          repo="ghcr.io/${{ github.repository_owner }}/ago-brandbook"
+          docker push "${repo}:${{ github.sha }}"
+          docker push "${repo}:main"
+
+      - name: Summarise what was published
+        run: |
+          {
+            echo "### Image published"
+            echo
+            echo "Deploy with: \`./deploy.sh brandbook ${{ github.sha }}\` (ago-deploy/k8s, on the node)"
+            echo
+            echo "- \`ghcr.io/${{ github.repository_owner }}/ago-brandbook:${{ github.sha }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
