@@ -48,7 +48,7 @@
     </div>
   </div>
   <div class="wrap">
-    <p class="lede">The twelve real components AGO Console ships
+    <p class="lede">The thirteen real components AGO Console ships
       (<code>ago-console/src/components/</code>), each shown in its real states, styled from the
       real <code>components.css</code> — not redrawn or approximated. This is a static reference,
       not a playground: nothing here is editable, and a dialog that would normally need a click to
@@ -255,6 +255,40 @@
             <div class="demo-item">
               <span class="demo-cap">disabled</span>
               <input class="ago-control" type="text" value="Locked while syncing" disabled style="width:230px;">
+            </div>
+          </div>
+          <div class="demo-row" style="align-items:flex-start;">
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">phone, empty (25-186)</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-phone-1">Customer phone</label>
+                <div class="ago-phone-input">
+                  <span class="ago-phone-input__prefix" aria-hidden="true">🇷🇺 +7</span>
+                  <input id="f-phone-1" class="ago-control" type="tel" placeholder="(912) 345-67-89">
+                </div>
+                <span class="ago-field__description">Russia is the only country this field supports.</span>
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">phone, filled</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-phone-2">Customer phone</label>
+                <div class="ago-phone-input">
+                  <span class="ago-phone-input__prefix" aria-hidden="true">🇷🇺 +7</span>
+                  <input id="f-phone-2" class="ago-control" type="tel" value="(912) 345-67-89">
+                </div>
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">phone, invalid</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-phone-3">Customer phone</label>
+                <div class="ago-phone-input ago-phone-input--invalid">
+                  <span class="ago-phone-input__prefix" aria-hidden="true">🇷🇺 +7</span>
+                  <input id="f-phone-3" class="ago-control" type="tel" aria-invalid="true" value="(9)">
+                </div>
+                <span class="ago-field__error">Enter the full 10-digit number.</span>
+              </div>
             </div>
           </div>
         </div>
