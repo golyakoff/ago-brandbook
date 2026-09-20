@@ -291,6 +291,68 @@
               </div>
             </div>
           </div>
+          <div class="demo-row" style="align-items:flex-start;">
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">date, empty (25-185)</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-date-1">Booking date</label>
+                <input id="f-date-1" class="ago-control" type="date">
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">date, filled</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-date-2">Booking date</label>
+                <input id="f-date-2" class="ago-control" type="date" value="2026-09-20">
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">date, invalid</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-date-3">Booking date</label>
+                <input id="f-date-3" class="ago-control" type="date" aria-invalid="true" value="2026-09-20">
+                <span class="ago-field__error">Choose a date no earlier than today.</span>
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">date, disabled</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-date-4">Booking date</label>
+                <input id="f-date-4" class="ago-control" type="date" value="2026-09-20" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="demo-row" style="align-items:flex-start;">
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">time, empty (25-185)</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-time-1">Booking time</label>
+                <input id="f-time-1" class="ago-control" type="time">
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">time, filled</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-time-2">Booking time</label>
+                <input id="f-time-2" class="ago-control" type="time" value="14:30">
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">time, invalid</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-time-3">Booking time</label>
+                <input id="f-time-3" class="ago-control" type="time" aria-invalid="true" value="14:30">
+                <span class="ago-field__error">Outside the shop's working hours.</span>
+              </div>
+            </div>
+            <div class="demo-item" style="min-width:230px;">
+              <span class="demo-cap">time, disabled</span>
+              <div class="ago-field">
+                <label class="ago-field__label" for="f-time-4">Booking time</label>
+                <input id="f-time-4" class="ago-control" type="time" value="14:30" disabled>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
